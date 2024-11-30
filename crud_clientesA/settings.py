@@ -25,7 +25,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-dg5u%+v3*4402i$ev9s63j4@wyxgcx6t*kq$7tuey+h0tg%hs$'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+#DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 
@@ -125,7 +126,20 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
-STATIC_URL = 'static/'
+# Cambio para producción
+#STATIC_URL = 'static/'
+# Archivos estaticos en producción
+
+
+STATIC_URL = '/static/'  # Asegúrate de que esta línea sea correcta
+
+# En producción, STATIC_ROOT define dónde se recopilan los archivos estáticos
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+# Solo si necesitas archivos adicionales en desarrollo
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'clientes', 'static'),  # Ruta a tu carpeta estática
+]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
@@ -138,3 +152,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # Redirecciones de login
 LOGIN_URL = '/clientes/login'
 LOGIN_REDIRECT_URL = '/clientes/'
+
+
+# postgresql://gibran:CmveOaTfeJWavG4nmDpCArxMCxOpgeyO@dpg-ct2tajt2ng1s73ed9680-a.oregon-postgres.render.com/burguer_76ig
+# postgresql://gibran:CmveOaTfeJWavG4nmDpCArxMCxOpgeyO@dpg-ct2tajt2ng1s73ed9680-a/burguer_76ig
